@@ -7,12 +7,6 @@ import "./MainPage.css";
 
 const MainPage = () => (
     <div id="MainPage">
-        <div id="HeaderWrapper">
-            <Header />
-        </div>
-        <div id="LeftPanelWrapper">
-            <LeftPanel sections={SectionSchemaProvider.getSchemas()} initialSelectedSection="Student" />
-        </div>
         <div id="BodyWrapper">
             <Body />
         </div>

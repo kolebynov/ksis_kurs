@@ -42,6 +42,19 @@ const schemas = [
                 keyColumnName: "userId"
             })
         ]
+    }),
+    new ModelSchema({
+        name: "User",
+        caption: "Пользователи",
+        primaryColumnName: "id",
+        displayColumnName: "id",
+        resourceName: "users",
+        columns: [
+            new ModelColumnSchema({
+                name: "id",
+                type: DataTypes.TEXT,
+            })
+        ]
     })
 ];
 
