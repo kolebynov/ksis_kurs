@@ -25,6 +25,11 @@ namespace Kurs
                     Description = "123",
                     UserId = new Guid("{3A506041-A5D6-48BC-A8FA-04BF8306A53A}")
                 });
+                context.NoteCategories.Add(new NoteCategory
+                {
+                    Id = new Guid("{D6355772-F33D-4442-AF04-E1A184736730}"),
+                    Name = "Без категории"
+                });
                 context.SaveChanges();
             }
 

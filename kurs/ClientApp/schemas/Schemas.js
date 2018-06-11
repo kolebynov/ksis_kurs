@@ -44,6 +44,24 @@ const schemas = [
         ]
     }),
     new ModelSchema({
+        name: "NoteCategory",
+        caption: "Категории",
+        primaryColumnName: "id",
+        displayColumnName: "name",
+        resourceName: "categories",
+        columns: [
+            new ModelColumnSchema({
+                name: "id",
+                type: DataTypes.TEXT,
+            }),
+            new ModelColumnSchema({
+                name: "name",
+                type: DataTypes.TEXT,
+                caption: "Имя"
+            })
+        ]
+    }),
+    new ModelSchema({
         name: "User",
         caption: "Пользователи",
         primaryColumnName: "id",

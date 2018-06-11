@@ -25,7 +25,7 @@ class LeftPanel extends React.PureComponent {
         return (
             <div id="LeftPanel">
                 <SelectableList value={this.state.selectedSection} onChange={this._onSelectChange}>
-                    {this.props.categories.map(category => 
+                    {this.state.categories.map(category => 
                         (<ListItem key={category.id} primaryText={category.name} data-primary-value={category.id} 
                             onClick={this._onListItemClick} value={category.id}></ListItem>)
                     )}
@@ -50,7 +50,7 @@ class LeftPanel extends React.PureComponent {
     }
 
     _loadCategories() {
-        const categorySchema = modelSchemaProvider.getSchemaByName("Category");
+        const categorySchema = modelSchemaProvider.getSchemaByName("NoteCategory");
         new ApiService(categorySchema.resourceName).getItems()
             .then(response => this.setState({
                 categories: response.data
