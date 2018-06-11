@@ -2,24 +2,32 @@ import React from "react";
 import { List, ListItem, makeSelectable } from "material-ui/List";
 import UrlHelper from "../../utils/UrlHelper";
 import PropTypes from "prop-types";
+import ApiService from "../../services/ApiService";
+import modelSchemaProvider from "../../schemas/ModelSchemaProvider";
 
 const SelectableList = makeSelectable(List);
 
 class LeftPanel extends React.PureComponent {
     constructor(props, context) {
         super(props);
+
         this.state = {
-            selectedSection: props.initialSelectedSection || context.router.match.params
+            selectedSection: null,
+            categories: []
         };
+    }
+
+    componentWillMount() {
+        this._loadCategories();
     }
 
     render() {
         return (
             <div id="LeftPanel">
                 <SelectableList value={this.state.selectedSection} onChange={this._onSelectChange}>
-                    {this.props.sections.map(sectionSchema => 
-                        (<ListItem key={sectionSchema.modelName} primaryText={sectionSchema.caption} data-model-name={sectionSchema.modelName} 
-                            onClick={this._onListItemClick} value={sectionSchema.modelName}></ListItem>)
+                    {this.props.categories.map(category => 
+                        (<ListItem key={category.id} primaryText={category.name} data-primary-value={category.id} 
+                            onClick={this._onListItemClick} value={category.id}></ListItem>)
                     )}
                 </SelectableList>
             </div>
@@ -32,7 +40,7 @@ class LeftPanel extends React.PureComponent {
     }
 
     _onListItemClick = (e) => {
-        this._goToSection(e.currentTarget.dataset.modelName);
+        this._goToSection(e.currentTarget.dataset.primaryValue);
     }
     
     _onSelectChange = (e, modelName) => {
@@ -40,15 +48,18 @@ class LeftPanel extends React.PureComponent {
             selectedSection: modelName
         });
     }
+
+    _loadCategories() {
+        const categorySchema = modelSchemaProvider.getSchemaByName("Category");
+        new ApiService(categorySchema.resourceName).getItems()
+            .then(response => this.setState({
+                categories: response.data
+            }));
+    }
 }
 
 LeftPanel.contextTypes = {
     router: PropTypes.object.isRequired
-};
-
-LeftPanel.propTypes = {
-    sections: PropTypes.array.isRequired,
-    initialSelectedSection: PropTypes.string
 };
 
 export default LeftPanel;

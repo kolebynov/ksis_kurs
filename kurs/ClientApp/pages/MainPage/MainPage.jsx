@@ -7,6 +7,9 @@ import "./MainPage.css";
 
 const MainPage = () => (
     <div id="MainPage">
+        <div id="LeftPanelWrapper">
+            <LeftPanel />
+        </div>
         <div id="BodyWrapper">
             <Body />
         </div>
