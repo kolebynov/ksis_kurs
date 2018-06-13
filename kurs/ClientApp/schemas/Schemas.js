@@ -35,11 +35,11 @@ const schemas = [
                 caption: "Описание",
             }),
             new ModelColumnSchema({
-                name: "user",
+                name: "category",
                 type: DataTypes.LOOKUP,
-                referenceSchemaName: "User",
-                caption: "Владелец",
-                keyColumnName: "userId"
+                referenceSchemaName: "NoteCategory",
+                caption: "Категория",
+                keyColumnName: "categoryId"
             })
         ]
     }),
@@ -72,6 +72,76 @@ const schemas = [
                 name: "id",
                 type: DataTypes.TEXT,
             })
+        ]
+    }),
+    new ModelSchema({
+        name: "NoteFile",
+        caption: "Файлы",
+        primaryColumnName: "id",
+        displayColumnName: "fileName",
+        resourceName: "files",
+        columns: [
+            new ModelColumnSchema({
+                name: "id",
+                type: DataTypes.TEXT
+            }),
+            new ModelColumnSchema({
+                name: "contentType",
+                type: DataTypes.TEXT,
+                caption: "Тип контента"
+            }),
+            new ModelColumnSchema({
+                name: "fileName",
+                type: DataTypes.TEXT,
+                caption: "Имя файла"
+            }),
+            new ModelColumnSchema({
+                name: "length",
+                type: DataTypes.NUMBER,
+                caption: "Размер"
+            }),
+            new ModelColumnSchema({
+                name: "note",
+                type: DataTypes.LOOKUP,
+                caption: "Записка",
+                referenceSchemaName: "Note",
+                keyColumnName: "noteId"
+            })
+        ]
+    }),
+    new ModelSchema({
+        name: "NoteComment",
+        caption: "Комментарии",
+        primaryColumnName: "id",
+        displayColumnName: "Text",
+        resourceName: "comments",
+        columns: [
+            new ModelColumnSchema({
+                name: "id",
+                type: DataTypes.TEXT
+            }),
+            new ModelColumnSchema({
+                name: "сreatedOn",
+                type: DataTypes.DATETIME,
+                caption: "Дата создания"
+            }),
+            new ModelColumnSchema({
+                name: "modifiedOn",
+                type: DataTypes.DATETIME,
+                caption: "Дата модификации"
+            }),
+            new ModelColumnSchema({
+                name: "note",
+                type: DataTypes.LOOKUP,
+                caption: "Записка",
+                referenceSchemaName: "Note",
+                keyColumnName: "noteId"
+            }),
+            new ModelColumnSchema({
+                name: "text",
+                caption: "Комментарий",
+                type: DataTypes.TEXT
+            }),
         ]
     })
 ];

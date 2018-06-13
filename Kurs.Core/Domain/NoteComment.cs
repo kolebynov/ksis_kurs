@@ -16,11 +16,6 @@ namespace Kurs.Core.Domain
 
         public DateTime ModifiedOn { get; set; }
 
-        [ForeignKey(nameof(Owner))]
-        public Guid OwnerId { get; set; }
-
-        public User Owner { get; set; }
-
         [ForeignKey(nameof(Note))]
         public Guid NoteId { get; set; }
 

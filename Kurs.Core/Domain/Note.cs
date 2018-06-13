@@ -13,11 +13,6 @@ namespace Kurs.Core.Domain
         [MaxLength(500)]
         public string Description { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
-
-        public User User { get; set; }
-
         [ForeignKey(nameof(Category))]
         public Guid? CategoryId { get; set; }
 

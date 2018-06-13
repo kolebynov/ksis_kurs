@@ -36,17 +36,7 @@ class BaseModelSchemaPage extends BaseModelPage {
 
     _save = () => {
         if (this.state.hasChanges) {
-            const modelSchema = this.props.modelSchema;
-            const model = modelUtils.getModelForUpdate(this.state.model, modelSchema);
-            const apiService = new ApiService(modelSchema.resourceName);
-            let updatePromise = null;
-            if (!this._isEmptyGuid(this.props.primaryColumnValue)) {
-                updatePromise = apiService.updateItem(modelUtils.getPrimaryValue(model, modelSchema), model);
-            }
-            else {
-                updatePromise = apiService.addItem(model);
-            }
-            updatePromise.then(response => this._back());
+            this._getSavePromise().then(response => this._back());
         }
         else {
             this._back();
@@ -59,6 +49,19 @@ class BaseModelSchemaPage extends BaseModelPage {
 
     _isEmptyGuid(guid) {
         return !guid || guid === constants.EMPTY_GUID;
+    }
+
+    _getSavePromise() {
+        const modelSchema = this.props.modelSchema;
+        const model = modelUtils.getModelForUpdate(this.state.model, modelSchema);
+        const apiService = new ApiService(modelSchema.resourceName);
+
+        if (!this._isEmptyGuid(this.props.primaryColumnValue)) {
+            return apiService.updateItem(modelUtils.getPrimaryValue(model, modelSchema), model);
+        }
+        else {
+            return apiService.addItem(model);
+        }
     }
 }
 
