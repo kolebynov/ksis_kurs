@@ -21,7 +21,7 @@ class BaseModelSection extends React.PureComponent {
         return (
             <div>
                 {this.renderHeader()}
-                <DataGrid modelName={this.props.modelName} rowActions={this._getDataGridRowActions()}/>
+                {this._renderGrid()}
             </div>
         );
     }
@@ -40,6 +40,10 @@ class BaseModelSection extends React.PureComponent {
                 <FlatButton label="Добавить" onClick={this._onAddButtonClick}></FlatButton>
             </div>
         );
+    }
+
+    _renderGrid() {
+        return (<DataGrid modelName={this.props.modelName} rowActions={this._getDataGridRowActions()} columnsForDisplay={this._getColumnsForGrid()}/>);
     }
 
     openEditPage(primaryValue) {
@@ -70,6 +74,10 @@ class BaseModelSection extends React.PureComponent {
         });
 
         return actions;
+    }
+
+    _getColumnsForGrid() {
+        return null;
     }
 }
 

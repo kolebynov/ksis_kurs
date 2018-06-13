@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import urlHelper from "./utils/UrlHelper";
 import { GlobalHistory } from "./common/History";
+import StateLoader from "./components/StateLoader.jsx";
 import "./app.css";
 
 const App = () => (
@@ -15,6 +16,7 @@ const App = () => (
                 <Route path={urlHelper.getLoginPagePath()} component={LoginPage} />
                 <Route path="/" component={MainPage} />
             </Switch>
+            <StateLoader />
         </div>
     </MuiThemeProvider>
 )

@@ -34,13 +34,13 @@ class LeftPanel extends React.PureComponent {
         );
     }
 
-    _goToSection(modelName) {
-        const url = UrlHelper.getUrlForModelSection(modelName);
-        this.context.router.history.push(url);
+    _goToCategory(categoryId) {
+        const url = UrlHelper.getUrlForModelSection("Note", {category: categoryId});
+        this.context.router.history.push(url, {...this.context.router.route.location.state, category: categoryId});
     }
 
     _onListItemClick = (e) => {
-        this._goToSection(e.currentTarget.dataset.primaryValue);
+        this._goToCategory(e.currentTarget.dataset.primaryValue);
     }
     
     _onSelectChange = (e, modelName) => {

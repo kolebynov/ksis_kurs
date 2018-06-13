@@ -32,7 +32,7 @@ class DataGrid extends React.PureComponent {
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.modelName !== newProps.modelName) {
+        if (this.props.modelName !== newProps.modelName || this.props.rootModel !== newProps.rootModel) {
             this.setState(this._getDefaultState(), this._loadCurrentPage);
         }
     }

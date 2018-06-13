@@ -1,7 +1,10 @@
+import NoteSection from "../components/sections/NoteSection/NoteSection.jsx";
+
 const schemas = [
     {
         modelName: "Note",
-        caption: "Записки"
+        caption: "Записки",
+        component: NoteSection
     }
 ];
 
