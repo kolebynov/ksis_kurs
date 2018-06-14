@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Kurs.Controllers.Api
 {
+    /// <summary>
+    /// Контроллер для работы с категориями записок.
+    /// </summary>
     [Route("api/categories")]
     public class CategoryController : BaseApiController<NoteCategory>
     {
@@ -20,6 +23,13 @@ namespace Kurs.Controllers.Api
         {
         }
 
+        /// <summary>
+        /// Возвращает записки конкретной категории.
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="id">Id категории</param>
+        /// <param name="options">Опции запроса</param>
+        /// <returns></returns>
         [HttpGet("{id}/notes")]
         public Task<ApiResult<IEnumerable<Note>>> GetNotes([FromServices]IRepository<Note> repository, Guid id,
             GetItemsOptions options)

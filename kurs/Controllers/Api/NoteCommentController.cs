@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kurs.Controllers.Api
 {
+    /// <summary>
+    /// Контроллер для работы с комментариями записок.
+    /// </summary>
     [Route("api/comments")]
     public class NoteCommentController : BaseApiController<NoteComment>
     {

@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kurs.Controllers.Api
 {
+    /// <summary>
+    /// Контроллер для работы с записками.
+    /// </summary>
     [Route("api/notes")]
     public class NoteController : BaseApiController<Note>
     {
@@ -26,6 +29,13 @@ namespace Kurs.Controllers.Api
             _noteFileService = noteFileService;
         }
 
+        /// <summary>
+        /// Возвращает комментарии конкретной записки.
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="id">Id записки.</param>
+        /// <param name="options">Опции запроса</param>
+        /// <returns></returns>
         [HttpGet("{id}/comments")]
         public Task<ApiResult<IEnumerable<NoteComment>>> GetComments([FromServices]IRepository<NoteComment> repository, Guid id, 
             GetItemsOptions options)
@@ -34,6 +44,13 @@ namespace Kurs.Controllers.Api
                 Guid.Empty, options);
         }
 
+        /// <summary>
+        /// Получает файлы записки.
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="id">Id записки</param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         [HttpGet("{id}/files")]
         public Task<ApiResult<IEnumerable<NoteFile>>> GetFiles([FromServices]IRepository<NoteFile> repository, Guid id,
             GetItemsOptions options)
@@ -42,6 +59,13 @@ namespace Kurs.Controllers.Api
                 Guid.Empty, options);
         }
 
+        /// <summary>
+        /// Загружает файлы на сервер для конкр записки.
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="id">Id записки.</param>
+        /// <param name="files">Коллекция файлов для загрузки.</param>
+        /// <returns></returns>
         [HttpPost("{id}/uploadFiles")]
         public async Task<ApiResult<IEnumerable<NoteFile>>> UploadFiles([FromServices] IRepository<NoteFile> repository, 
             Guid id, List<IFormFile> files)

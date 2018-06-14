@@ -79,9 +79,8 @@ class FileList extends React.PureComponent {
         fileInput.setAttribute("type", "file");
         fileInput.setAttribute("multiple", null);
         fileInput.addEventListener("change", () => {
-            debugger;
             noteFileService.uploadFiles(this.props.noteId, fileInput.files)
-                .then(response => this._loadFiles());
+                .then(() => this._loadFiles());
         });
         fileInput.click();
     }
