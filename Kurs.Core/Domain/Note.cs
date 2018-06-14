@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kurs.Core.Domain
 {
-    public class Note : BaseLookup
+    public class Note : BaseLookup, IDateTrackable
     {
         public DateTime CreatedOn { get; set; }
 

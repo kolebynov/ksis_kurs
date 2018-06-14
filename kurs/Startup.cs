@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Kurs.Core.Data;
+using Kurs.Core.Domain;
+using Kurs.Core.EntityActions;
 using Kurs.Core.Infrastructure;
 using Kurs.Filters;
 using Kurs.Infrastructure;
@@ -42,6 +44,9 @@ namespace Kurs
             services.AddSingleton<IApiQuery, ApiQuery>();
             services.AddSingleton<ModelStateCheckActionFilterAttribute, ModelStateCheckActionFilterAttribute>();
             services.AddSingleton<ApiExceptionActionFilterAttribute, ApiExceptionActionFilterAttribute>();
+            services.AddSingleton(typeof(IEntityActionsHandler<>), typeof(DefaultEntityActionsHandler<>));
+            services.AddSingleton<IEntityActionsHandler<NoteComment>, DateTrackableActionsHandler>();
+            services.AddSingleton<IEntityActionsHandler<Note>, DateTrackableActionsHandler>();
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<INoteFileService, NoteFileService>();
 
