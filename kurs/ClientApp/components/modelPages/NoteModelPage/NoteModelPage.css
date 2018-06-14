@@ -1,3 +1,7 @@
-.commentaries-wrapper {
+.note-body .commentaries-wrapper {
     margin-top: 20px;
+}
+
+.note-body .note-body-left {
+    float: left;
 }

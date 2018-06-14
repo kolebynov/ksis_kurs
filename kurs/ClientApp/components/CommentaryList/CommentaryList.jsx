@@ -7,6 +7,7 @@ import modelUtils from "../../utils/ModelUtils";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import "./CommentaryList.css";
+import constants from "../../utils/Constants";
 
 class CommentaryList extends React.PureComponent {
     constructor() {
@@ -25,6 +26,10 @@ class CommentaryList extends React.PureComponent {
     }
 
     render() {
+        if (!this.props.noteId || this.props.noteId === constants.EMPTY_GUID) {
+            return null;
+        }
+
         return (
             <div>
                 <span>Комментарии</span>

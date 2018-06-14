@@ -9,7 +9,7 @@ namespace Kurs.Core.EntityActions
         public override Task OnCreatingAsync(IDateTrackable entity)
         {
             entity.CreatedOn = DateTime.UtcNow;
-            entity.ModifiedOn = DateTime.UtcNow;
+            entity.ModifiedOn = entity.CreatedOn;
             return base.OnCreatingAsync(entity);
         }
 

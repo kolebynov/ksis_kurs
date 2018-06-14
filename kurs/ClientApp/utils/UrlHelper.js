@@ -35,6 +35,10 @@ class UrlHelper {
         return `/login`;
     }
 
+    getDownloadFileUrl(fileId) {
+        return `/api/files/${fileId}/fileData`;
+    }
+
     _addQueryToUrl(url, query) {
         return query ? `${url}?${queryString.stringify(query)}` : url;
     }
